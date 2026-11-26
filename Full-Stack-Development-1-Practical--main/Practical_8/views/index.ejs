@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1><%= message %></h1>
+
+        <h2>Express Route Application</h2>
+
+        <form action="/submit" method="POST">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+        <div class="links">
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/services">Services</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
+

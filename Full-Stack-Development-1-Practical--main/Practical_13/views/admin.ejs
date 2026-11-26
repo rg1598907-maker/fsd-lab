@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Cart</a>
+            <a href="/orders">Orders</a>
+            <a href="/admin">Admin Panel</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>Add New Product</h2>
+
+        <form action="/admin/add" method="POST" class="admin-form">
+
+            <label>Product Name:</label>
+            <input type="text" name="name" placeholder="Enter product name" required>
+
+            <label>Price:</label>
+            <input type="number" name="price" placeholder="Enter price" min="0.01" step="0.01" required>
+
+            <label>Description:</label>
+            <textarea name="description" placeholder="Enter product description" required></textarea>
+
+            <label>Image URL:</label>
+            <input type="text" name="image" placeholder="Enter image URL">
+
+            <button type="submit">Add Product</button>
+
+        </form>
+
+        <hr>
+
+        <h2>Manage Products</h2>
+
+        <% if (products.length === 0) { %>
+            <p>No products available.</p>
+        <% } else { %>
+
+            <table>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td>₹<%= product.price %></td>
+                        <td>
+                            <form action="/admin/delete/<%= product._id %>" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+
+            </table>
+
+        <% } %>
+
+        <hr>
+
+        <h2>Customer Orders</h2>
+
+        <% if (orders.length === 0) { %>
+            <p>No customer orders yet.</p>
+        <% } else { %>
+
+            <% orders.forEach(order => { %>
+                <div class="order-card">
+                    <h3>Order ID: <%= order._id %></h3>
+                    <p>Customer: <%= order.customerName %></p>
+                    <p>Total: ₹<%= order.totalAmount %></p>
+                    <p>Payment: <%= order.paymentStatus %></p>
+                </div>
+            <% }); %>
+
+        <% } %>
+
+    </main>
+
+</body>
+</html>

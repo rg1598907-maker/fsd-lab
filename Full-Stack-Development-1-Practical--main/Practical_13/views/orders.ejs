@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Orders</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Order Management</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Cart</a>
+            <a href="/orders">Orders</a>
+            <a href="/admin">Admin Panel</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>All Orders</h2>
+
+        <% if (orders.length === 0) { %>
+            <p>No orders have been placed yet.</p>
+        <% } else { %>
+
+            <% orders.forEach(order => { %>
+                <div class="order-card">
+
+                    <h3>Order ID: <%= order._id %></h3>
+
+                    <p>
+                        Customer Name:
+                        <%= order.customerName %>
+                    </p>
+
+                    <p>
+                        Total Amount:
+                        ₹<%= order.totalAmount %>
+                    </p>
+
+                    <p>
+                        Payment Status:
+                        <%= order.paymentStatus %>
+                    </p>
+
+                    <p>
+                        Order Date:
+                        <%= new Date(order.orderDate).toLocaleString() %>
+                    </p>
+
+                    <h4>Products:</h4>
+
+                    <ul>
+                        <% order.products.forEach(item => { %>
+                            <li>
+                                <%= item.name %> -
+                                ₹<%= item.price %> ×
+                                <%= item.quantity %>
+                            </li>
+                        <% }); %>
+                    </ul>
+
+                </div>
+            <% }); %>
+
+        <% } %>
+
+    </main>
+
+</body>
+</html>

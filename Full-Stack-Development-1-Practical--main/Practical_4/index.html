@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chessboard Using JavaScript</title>
+</head>
+<body>
+
+    <script>
+
+        // Create heading
+        let heading = document.createElement("h1");
+        heading.innerText = "Chessboard";
+        heading.style.textAlign = "center";
+        document.body.appendChild(heading);
+
+        // Create chessboard container
+        let board = document.createElement("div");
+
+        board.style.display = "grid";
+        board.style.gridTemplateColumns = "repeat(8, 60px)";
+        board.style.gridTemplateRows = "repeat(8, 60px)";
+        board.style.width = "480px";
+        board.style.margin = "20px auto";
+        board.style.border = "3px solid black";
+
+        // Create 64 squares
+        for (let row = 0; row < 8; row++) {
+
+            for (let col = 0; col < 8; col++) {
+
+                let square = document.createElement("div");
+
+                square.style.width = "60px";
+                square.style.height = "60px";
+
+                // Apply alternate colors
+                if ((row + col) % 2 === 0) {
+                    square.style.backgroundColor = "white";
+                } else {
+                    square.style.backgroundColor = "black";
+                }
+
+                board.appendChild(square);
+            }
+        }
+
+        // Add chessboard to webpage
+        document.body.appendChild(board);
+
+    </script>
+
+</body>
+</html>

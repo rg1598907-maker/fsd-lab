@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My E-Commerce Store</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>My E-Commerce Store</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Shopping Cart</a>
+            <a href="/orders">Orders</a>
+            <a href="/admin">Admin Panel</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Available Products</h2>
+
+        <div class="products">
+            <% if (products.length === 0) { %>
+                <p>No products available. Visit Admin Panel to add products.</p>
+            <% } %>
+
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <% if (product.image) { %>
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                    <% } %>
+
+                    <h3><%= product.name %></h3>
+                    <p><%= product.description %></p>
+                    <h4>₹<%= product.price %></h4>
+
+                    <form action="/cart/add/<%= product._id %>" method="POST">
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+
+</body>
+</html>
